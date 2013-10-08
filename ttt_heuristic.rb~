@@ -3,7 +3,7 @@
 # Tic Tac Toe - algorythm use heuristic function
 # removed recursion,
 # created to optimize & sinplify code,
-# goal was to make it unbeatable
+# goal was to make it unbeatable,
 # Katarzyna Siwek
 
 # methods draw boards for Tic Tac Toe
