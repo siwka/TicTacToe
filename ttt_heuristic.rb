@@ -1,9 +1,10 @@
 #!/usr/bin/env ruby
 
-# Tic Tac Toe - algorythm use heuristic function
-# removed recursion,
-# created to optimize & simplify code,
-# goal was to make it unbeatable
+# Tic Tac Toe
+# program uses modified heuristic function
+# I also removed recursion,
+# created algorythm to optimize & simplify code,
+# goal was to make it unbeatable,
 # Katarzyna Siwek
 
 # methods draw boards for Tic Tac Toe
@@ -262,31 +263,36 @@ def computer_move(board)
 	# 	return win_inds.sample
 	# end
 
-	# start with a special case to avoid human signes in 3 corners in 2 empty lines
-	if board.count(" ") == 6 && board[4] == $computer_player &&
-	  ((board[0] == $human_player && board[8] == $human_player) ||
-	  (board[2] == $human_player && board[6] == $human_player))
-		arr_mv = [1,3,5,7]
-		mv = arr_mv.sample
+	# computer starts game in random place
+	if board.count(" ") == 9
+		mv = [0,1,2,3,4,5,6,7,8].sample
 	else
-		considered_temp = estimate_moves(board, $computer_player)
-		considered_mv = considered_temp[0]
-		considered_hu = considered_temp[1]
-		max_moves = selected_from_best_comp_mv(considered_mv)
-
-		# mirror and turned board are the same game cases
-		# here we consider only it this is middle board, corner or middle side
-		# as 1st, 2nd, and 3rd best choice respectevely
-		
-		# one only the best move for computer
-		if max_moves.length == 1
-			mv = max_moves[0][1]
+		# start with a special case to avoid human signes in 3 corners in 2 empty lines
+		if board.count(" ") == 6 && board[4] == $computer_player &&
+		  ((board[0] == $human_player && board[8] == $human_player) ||
+		  (board[2] == $human_player && board[6] == $human_player))
+			arr_mv = [1,3,5,7]
+			mv = arr_mv.sample
 		else
-			# remove the best chance for human
-			max_moves.delete([max_moves[0][0], remove_mv(considered_hu, max_moves)])
-			# randome choice
-			result = max_moves.sample
-			mv = result[1]
+			considered_temp = estimate_moves(board, $computer_player)
+			considered_mv = considered_temp[0]
+			considered_hu = considered_temp[1]
+			max_moves = selected_from_best_comp_mv(considered_mv)
+
+			# mirror and turned board are the same game cases
+			# here we consider only it this is middle board, corner or middle side
+			# as 1st, 2nd, and 3rd best choice respectevely
+			
+			# one only the best move for computer
+			if max_moves.length == 1
+				mv = max_moves[0][1]
+			else
+				# remove the best chance for human
+				max_moves.delete([max_moves[0][0], remove_mv(considered_hu, max_moves)])
+				# randome choice
+				result = max_moves.sample
+				mv = result[1]
+			end
 		end
 	end
 		
