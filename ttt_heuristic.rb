@@ -10,7 +10,6 @@
 # methods draw boards for Tic Tac Toe
 # they are more complicated because indexes in array reflect numeric pad
 def draw_empty_board
-# size of board 3x3 => n=3
 	n = 3
 	temp = [2,1,0]
 	ind_board = []
@@ -100,7 +99,6 @@ end # input_players()
 def won (board, current_player)
 # variable test becomes true if current_player has marked
 # 3 characters in row, column or diaginally
-# moew code, less operations? :-)
 
 	test = false
 	if (board[4] == current_player)
@@ -234,7 +232,7 @@ end # def selected_from_best_comp_mv(results)
 def remove_mv(considered_hu, max_moves)
 # removes from possible good moves the one with biggest potential to lose
 	human_max_score = -FIXNUM_MAX
-	rm_mv = -1 # add error handling? since no -1 position to del
+	rm_mv = -1
 	max_moves.length.times do |ind|
 		if considered_hu[max_moves[ind][1]] > human_max_score
 			human_max_score = considered_hu[max_moves[ind][1]]
@@ -248,7 +246,6 @@ end # remove_mv(considered_hu, max_moves)
 def computer_move(board)
 # find next computer move
 
-	#win_inds = []
 	9.times do |ind|
 		if board[ind] == " "
 			board[ind] = $computer_player
@@ -256,12 +253,8 @@ def computer_move(board)
 				return ind
 			end
 			board[ind] = " "
-			#win_inds << ind			
 		end
 	end
-	# if win_inds != []
-	# 	return win_inds.sample
-	# end
 
 	# computer starts game in random place
 	if board.count(" ") == 9
@@ -289,7 +282,6 @@ def computer_move(board)
 			else
 				# remove the best chance for human
 				max_moves.delete([max_moves[0][0], remove_mv(considered_hu, max_moves)])
-				# randome choice
 				result = max_moves.sample
 				mv = result[1]
 			end
@@ -305,14 +297,14 @@ def human_move(board)
 	print "\nPerson is choosing a move:\nChoose your move (1-9) in an empty space: "
 	
 	begin
-		system("stty raw -echo") # wczytaj dane od uzytkownika
+		system("stty raw -echo")
 		mv = STDIN.getc
 		system("stty -raw echo")
 	end until ["1","2","3","4","5","6","7","8","9"].index(mv) && (board[mv.to_i - 1] == " ")
 
 	puts mv
 	mv = mv.to_i
-	mv = mv-1 # array numbered [0..8], board [1..9]
+	mv = mv-1
 	return mv
 end # def human_move(board)
 
@@ -364,7 +356,7 @@ board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
 # set who starts a game & which symbol use
 input_symbols = input_players()
 $human_player = input_symbols[0]
-$computer_player = input_symbols[1]  # spr czy da sie skrocic do 1 linii
+$computer_player = input_symbols[1]
 current_player = input_symbols[2]
 
 draw_empty_board
