@@ -3,7 +3,7 @@ def clear_screen
 end
 
 
-def introducation
+def introduction
 	puts "\nUse numeric pad that mimic above board to play\n"
 end
 
@@ -89,12 +89,12 @@ def info_computer_start
 end
 
 
-def read_human_move
+def read_human_move(board)
 	print "\nPerson is choosing a move:\nChoose your move (1-9) in an empty space: "
 	
 	begin
 		mv = get_char
-	end until ["1","2","3","4","5","6","7","8","9"].index(mv)
+	end until ["1","2","3","4","5","6","7","8","9"].index(mv)  && (board[mv.to_i - 1] == " ")
 
 	puts mv
 	mv = mv.to_i
