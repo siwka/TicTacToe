@@ -103,7 +103,7 @@ describe "Action Object" do
 			game.computer_move(@arr_06).should eql 4
 		end
 
-		it "returns the best move" do
+		it "returns safe, not the best to win move" do
 			game.computer_move(@arr_07).should eql 8
 		end
 

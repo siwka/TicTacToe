@@ -38,12 +38,6 @@ describe "Action Object" do
 				  		 " ", "x", " "]		
 	end	
 
-	# def tie (board) 
-	# # tie if there is no more moves, meaning no space in array
-	# # to simplyfy we assume that won() was called before tie()
-	# 	return board.none? { |b| b == " " }
-	# end # def tie (board)
-
 
 	describe "tie" do
 
@@ -109,7 +103,7 @@ describe "Action Object" do
 			game.computer_move(@arr_06).should eql 4
 		end
 
-		it "returns the best move" do
+		it "returns safe move" do
 			game.computer_move(@arr_07).should eql 8
 		end
 
