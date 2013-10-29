@@ -183,9 +183,7 @@ class Action
 	end # remove_mv(considered_hu, max_moves)
 
 
-	def computer_move(board)
-	# find next computer move
-
+	def winning_move?(board)
 		9.times do |ind|
 			if board[ind] == " "
 				board[ind] = $computer_player
@@ -195,12 +193,19 @@ class Action
 				board[ind] = " "
 			end
 		end
+		return false
+	end
 
-		# computer starts game in random place
+	def computer_move(board)
+		
+		if mv = winning_move?(board)
+			return mv
+		end
+
 		if board.count(" ") == 9
 			mv = [0,1,2,3,4,5,6,7,8].sample
 		else
-			# start with a special case to avoid human signes in 3 corners in 2 empty lines
+			# start with a special case to avoid human moves in 3 corners in 2 empty lines
 			if board.count(" ") == 6 && board[4] == $computer_player &&
 			  ((board[0] == $human_player && board[8] == $human_player) ||
 			  (board[2] == $human_player && board[6] == $human_player))
