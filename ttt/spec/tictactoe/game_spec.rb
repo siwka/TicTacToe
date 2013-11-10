@@ -6,7 +6,6 @@ module TicTacToe
 			let(:output) { double('output').as_null_object }
 			let(:game) { Game.new(output) }
 
-			# it "prompts to chose symbol 'x' or 'o'"
 			it 'sends a welcome message' do
 				output.should_receive(:puts).with('Welcome to tic tac toe!')
 				game.start

@@ -4,6 +4,7 @@ require 'tictactoe'
 
 game = TicTacToe::Game.new(STDOUT)
 game.start
-while guess = gets.chomp
-  game.guess(guess)
-end
+game.set_game('x')
+# while guess = gets.chomp
+#   game.guess(guess)
+# end
