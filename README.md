@@ -3,9 +3,12 @@ TicTacToe
 
 The Program is a Tic Tac Toe game played in a terminal window.
 
-To start from command line type:
+To start a game from command line type:
+$  bin/tictactoe
 
-$ ruby ttt_heuristic.rb
+To start a test type:
+$
+
 
 At the beginning of the game you will be prompted to chose a symbol 'o' or 'x' that represents you in the game. Next, you will decide if you or the computer begins the game. At the end, you have the option to start another game or exit the program.
 

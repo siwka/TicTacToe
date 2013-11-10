@@ -1,2 +1,0 @@
-require '../ttt_console'
-

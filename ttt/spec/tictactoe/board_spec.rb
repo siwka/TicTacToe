@@ -8,6 +8,7 @@ module TicTacToe
       context "create empty board" do
         it "creates an empty array, lenght 9" do
           game_board.board.should eql [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+          # [].should be_empty  -doesn't work
         end
       end
 
