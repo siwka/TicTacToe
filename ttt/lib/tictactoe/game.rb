@@ -82,6 +82,11 @@ module TicTacToe
 			return false	
 		end
 
+		def tie?(board)
+		# tie if there is no more moves, meaning no space in array
+		# to simplyfy we assume that won() was called before tie()
+			return board.none? { |b| b == " " }
+		end
 
 	end
 end

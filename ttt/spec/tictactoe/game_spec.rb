@@ -2,9 +2,12 @@ require 'spec_helper'
 
 module TicTacToe
 	describe Game do
+		let(:output) { double('output').as_null_object }
+		let(:game) { Game.new(output) }
+		
 		describe "#start" do
-			let(:output) { double('output').as_null_object }
-			let(:game) { Game.new(output) }
+			# let(:output) { double('output').as_null_object }
+			# let(:game) { Game.new(output) }
 
 			it 'sends a welcome message' do
 				output.should_receive(:puts).with("Welcome to tic tac toe!\n")
@@ -18,8 +21,6 @@ module TicTacToe
 		end
 
 		describe "#play" do
-			let(:output) { double('output').as_null_object }			
-			let(:game) { game = Game.new(output) }
 			
 			before do
 				@arr_08 = ["x", " ", " ",
@@ -73,5 +74,17 @@ module TicTacToe
 		 		game.won_horizontal?(@arr_15).should eql(2)
 		  end
 		end
+
+		describe "tie?" do
+			it "returns false if if there are any unplayed spaces" do
+				game.tie?([" "]).should be_false
+			end
+
+			it "returns true if all spaces are played" do
+				game.tie?(["x"]).should be_true
+			end
+
+		end
+
 	end
 end
