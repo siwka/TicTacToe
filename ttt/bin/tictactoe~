@@ -3,7 +3,10 @@ $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'tictactoe'
 
 game = TicTacToe::Game.new(STDOUT)
-game.start('1234')
-while guess = gets.chomp
-  game.guess(guess)
-end
+#console = TicTacToe::Console.new
+game.start
+game.set_game
+game.play
+# while guess = gets.chomp
+#   game.guess(guess)
+# end

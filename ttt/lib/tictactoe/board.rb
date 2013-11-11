@@ -1,10 +1,17 @@
-class Board
-  attr_accessor :board, :human_player_mark, :comp_player_mark
+# require_relative 'console'
+# require_relative 'game'
 
-  def initialize(human_player_mark)
+class Board
+  attr_accessor :board, :human_player_symbol, :comp_player_symbol
+
+  def initialize(human_player_symbol)
     @board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
-    @human_player_mark = human_player_mark
-    @comp_player_mark = (human_player_mark == 'x') ? 'o' : 'x'
+    @human_player_symbol = human_player_symbol
+    @comp_player_symbol = (human_player_symbol == 'x') ? 'o' : 'x'
+  end
+
+  def board_dimention
+    3
   end
 
 end
