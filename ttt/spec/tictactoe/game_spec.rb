@@ -4,10 +4,39 @@ module TicTacToe
 	describe Game do
 		let(:output) { double('output').as_null_object }
 		let(:game) { Game.new(output) }
+
+		before do
+			@arr_01 = [" ", " ", " ",
+				  	     " ", " ", " ",
+		 			       " ", " ", " "]
 		
+			@arr_02 = ["x", " ", "x",
+				  			 " ", "o", " ",
+				  			 " ", "o", " "]
+		
+			@arr_03 = ["x", " ", " ",
+					  		 " ", "o", "o",
+					  		 "x", " ", " "]			  
+			
+			@arr_04 = ["x", "o", "o",
+					  		 " ", "x", "x",
+					  		 "o", "o", " "]
+
+			@arr_05 = ["o", " ", " ",
+					  		 " ", "x", " ",
+					  		 " ", " ", "o"]
+
+			@arr_06 = [" ", "o", " ",   # one best move
+					  		 " ", " ", "x",
+					  		 " ", "x", "o"]
+
+
+			@arr_07 = [" ", "o", " ",   # best move 6 lead to lose -> remove human best
+					  		 " ", "x", "o",
+					  		 " ", "x", " "]	
+		end		
+
 		describe "#start" do
-			# let(:output) { double('output').as_null_object }
-			# let(:game) { Game.new(output) }
 
 			it 'sends a welcome message' do
 				output.should_receive(:puts).with("Welcome to tic tac toe!\n")
@@ -75,7 +104,7 @@ module TicTacToe
 		  end
 		end
 
-		describe "tie?" do
+		describe "#tie?" do
 			it "returns false if if there are any unplayed spaces" do
 				game.tie?([" "]).should be_false
 			end
@@ -83,8 +112,66 @@ module TicTacToe
 			it "returns true if all spaces are played" do
 				game.tie?(["x"]).should be_true
 			end
-
 		end
 
+		describe "#switch_player" do
+			comp_player_symbol = 'o'
+			human_player_symbol = 'x'
+			it "switches player to computer player if player was human player" do
+				pending "problem: generally avoid using instance variables in your tests, as they silently default to nil when referenced if uninitialized"
+				game.switch_player(human_player_symbol).should eql 'o'
+			end
+
+			it "switches player to human_player if player was computer_player" do
+				pending "..continoue - it worked for global variables"
+				game.switch_player(comp_player_symbol).should eql 'x'
+			end
+		end		
+
+		# describe "winning_move?" do
+		# 	#    def winning_move?(board)
+  #     #    n = @game_board.board_dimention - commented for test
+
+		# 	it "returns false if current move can't win" do
+		# 		game.winning_move?(@arr_01).should be_false
+		# 	end
+
+		# 	it "returns first posible position to win in this move" do
+		# 		game.winning_move?(@arr_02).should eql 1
+		# 	end
+
+		# 	it "returns first posible position to win in this move" do
+		# 		game.winning_move?(@arr_03).should eql 3
+		# 	end		
+
+		# 	it "returns first posible position to win in this move" do
+		# 		game.winning_move?(@arr_04).should eql 3
+		# 	end
+
+		# end
+
+
+		# describe "computer_move" do
+
+		# 	it "returns random nr from [0..8]" do
+		# 		expect([0,1,2,3,4,5,6,7,8]).to include(game.computer_move(@arr_01))
+		# 	end
+
+		# 	it "returns winning move" do
+		# 		game.computer_move(@arr_03).should eql 3
+		# 	end
+
+		# 	it "returns random nr of [1,3,5,7]" do
+		# 		expect([1,3,5,7]).to include(game.computer_move(@arr_05))
+		# 	end
+
+		# 	it "returns the best move" do
+		# 		game.computer_move(@arr_06).should eql 4
+		# 	end
+
+		# 	it "returns safe, not the best to win move" do
+		# 		game.computer_move(@arr_07).should eql 8
+		# 	end
+		# end
 	end
 end

@@ -1,5 +1,4 @@
- require_relative 'game'
-# require_relative 'board'
+require_relative 'game'
 
 class Console
   #attr_reader :message
@@ -12,7 +11,7 @@ class Console
     puts "\e[H\e[2J"
   end
 
-  # def puts (message)
+  # def puts (message)  #this trick makes test to pass & code not to work
   #   @message = message
   # end
 
@@ -80,10 +79,9 @@ class Console
     puts "\n"
   end
 
-
   def draw_board(board_dimention, board)
     puts "\n"
-    Math.sqrt(board_dimention).times do |ind|
+    (board_dimention*board_dimention).times do |ind|
       if (ind < board_dimention)
         print " " + board[ind+2*board_dimention].to_s + " "     
       elsif (2*board_dimention-1<ind)
@@ -93,12 +91,50 @@ class Console
       end
       if ((ind+1) % board_dimention != 0)
         print "|"
-      elsif ((ind+1) != Math.sqrt(board_dimention))
+      elsif ((ind+1) != (board_dimention*board_dimention))
         print "\n---+---+---\n"
       else
         print "\n"
       end 
     end
     puts "\n"
-  end 
+  end
+
+  def game_result(winner)
+      if winner = 1
+        puts "player x won!"
+      elsif winner = 2
+        puts "player o won!"
+      else
+        puts "Game is over - draw!"
+      end
+  end
+
+  def read_human_move(board)
+    print "\nPerson is choosing a move:\nChoose your move (1-9) in an empty space: "    
+    # mv = gets.chomp.chr
+    # until (["1","2","3","4","5","6","7","8","9"].index(mv)  && (board[mv.to_i - 1] == " "))
+    #   puts "this is wrong key, try again!"
+    #   mv = gets.chomp.chr
+    # end
+    begin
+      mv = gets.chomp.chr
+    end until ["1","2","3","4","5","6","7","8","9"].index(mv) && (board[mv.to_i - 1] == " ")
+    # puts mv
+    mv = mv.to_i
+    mv = mv-1
+    return mv
+  end
+
+  def print_computer_move(mv)
+    puts "Computer choose move to #{mv+1}"
+  end
+
+  def ask_if_continue_game
+    puts "Play again? (y/n):" 
+    begin
+      response = gets.chomp.chr
+    end until response == 'y' || response == 'n'
+    return response
+  end
 end

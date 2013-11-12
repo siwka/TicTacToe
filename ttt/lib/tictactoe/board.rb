@@ -1,6 +1,3 @@
-# require_relative 'console'
-# require_relative 'game'
-
 class Board
   attr_accessor :board, :human_player_symbol, :comp_player_symbol
 
