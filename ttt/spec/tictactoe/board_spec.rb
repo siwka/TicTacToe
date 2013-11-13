@@ -8,7 +8,7 @@ module TicTacToe
       context "create new empty board" do
         it "creates an empty array, lenght 9" do
           game_board.board.should eql [" ", " ", " ", " ", " ", " ", " ", " ", " "]
-          #ks [].should be_empty  -doesn't work  -why?
+          #ks [].should be_empty  -doesn't work  - because of size not []?
         end
       end
 

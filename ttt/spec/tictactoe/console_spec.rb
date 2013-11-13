@@ -19,8 +19,8 @@ module TicTacToe
       end
 
       it 'receives human starts a game' do
-        #console.human_starts?.should eql 1
-        expect([1,2]).to include(console.human_starts?)
+        console.human_starts?.should be_true
+        #expect([1,2]).to include(console.human_starts?)
       end
 
     end
