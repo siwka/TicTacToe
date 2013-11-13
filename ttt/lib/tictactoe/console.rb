@@ -20,20 +20,27 @@ class Console
     #puts("Who is going to make first move: 1-you, 2-computer?") for test pass with puts()
   end
 
+  def get_char
+    system("stty raw -echo")
+    character = STDIN.getc
+    system("stty -raw echo")
+    return character
+  end
+
   def human_starts?
-    start_player = gets.chomp.chr
+    start_player = get_char
     while start_player != 'y' and start_player !='n'
       puts "this is wrong character, try again!"
-      start_player = gets.chomp.chr
+      start_player = get_char
     end
-    case start_player
-    when 'y'
+
+    if start_player == 'y'
       info_human_starts
-      return 1
-    when 'n'
+      return true
+    elsif 'n'
       info_computer_starts
-      return 0
-    end
+      return false
+    end     
   end
 
   def info_human_starts
@@ -49,28 +56,28 @@ class Console
   end
 
   def human_symbol
-    human_player = gets.chomp.chr
+    human_player = get_char
     while human_player != 'x' and human_player !='o'
       puts "this is wrong character, try again!"
-      human_player = gets.chomp.chr
+      human_player = get_char
     end
     human_player
   end
 
   def draw_empty_board(board_dimention)
     ind_board = []
-    [2,1,0].each do |i|
-      board_dimention.times do |j|
-        ind_board << j+board_dimention*i+1
+    [2,1,0].each do |indx|
+      board_dimention.times do |column|
+        ind_board << column+board_dimention*indx+1
       end
     end
 
     puts "\n"
-    ind_board.each do |i|
-      print " "+ (i).to_s + " "
-      if ((i) % board_dimention != 0)
+    ind_board.each do |cell|
+      print " "+ (cell).to_s + " "
+      if ((cell) % board_dimention != 0)
         print "|"
-      elsif ((i) != board_dimention)
+      elsif ((cell) != board_dimention)
         print "\n---+---+---\n"
       else
         print "\n"
@@ -101,9 +108,9 @@ class Console
   end
 
   def game_result(winner)
-      if winner = 1
+      if winner == 1
         puts "player x won!"
-      elsif winner = 2
+      elsif winner == 2
         puts "player o won!"
       else
         puts "Game is over - draw!"
@@ -112,15 +119,14 @@ class Console
 
   def read_human_move(board)
     print "\nPerson is choosing a move:\nChoose your move (1-9) in an empty space: "    
-    # mv = gets.chomp.chr
+    # mv = get_char
     # until (["1","2","3","4","5","6","7","8","9"].index(mv)  && (board[mv.to_i - 1] == " "))
     #   puts "this is wrong key, try again!"
-    #   mv = gets.chomp.chr
+    #   mv = get_char
     # end
     begin
-      mv = gets.chomp.chr
+      mv = get_char
     end until ["1","2","3","4","5","6","7","8","9"].index(mv) && (board[mv.to_i - 1] == " ")
-    # puts mv
     mv = mv.to_i
     mv = mv-1
     return mv
@@ -132,9 +138,10 @@ class Console
 
   def ask_if_continue_game
     puts "Play again? (y/n):" 
-    begin
-      response = gets.chomp.chr
-    end until response == 'y' || response == 'n'
+    response = get_char
+    until response == 'y' || response == 'n'
+      response = get_char
+    end
     return response
   end
 end

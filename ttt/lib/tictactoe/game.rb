@@ -17,7 +17,7 @@ module TicTacToe
 
     def set_game
       @console.chose_symbol?
-      @game_board = Board.new(@console.human_symbol) #ks ???? check @ too here or in def line
+      @game_board = Board.new(@console.human_symbol)
       @output.puts "You use '#{@game_board.human_player_symbol}'"
       @output.puts "Computer uses '" + @game_board.comp_player_symbol + "'"
       @output.puts "\nUse numeric pad that mimic a board to play\n"
@@ -101,8 +101,8 @@ module TicTacToe
       else
         mv = computer_move(board)
       end
-      @game_board.board[mv] = current_player #ks
-      @console.draw_board(@game_board.board_dimention, @game_board.board) #ks
+      @game_board.board[mv] = current_player
+      @console.draw_board(@game_board.board_dimention, @game_board.board)
     end
 
     def human_move(board)
@@ -141,6 +141,7 @@ module TicTacToe
             max_moves.delete([max_moves[0][0], remove_mv(considered_hu, max_moves)])
             result = max_moves.sample
             mv = result[1]
+            puts "comp choose after deletion best human mv #{result[1]}"
           end
         end
       end
@@ -150,8 +151,8 @@ module TicTacToe
     end
 
     def winning_move?(board)
-      n = @game_board.board_dimention
-      n*n.times do |ind|
+      n = @game_board.board_dimention * @game_board.board_dimention
+      n.times do |ind|
         if board[ind] == " "
           board[ind] = @game_board.comp_player_symbol
           if won?(board)
@@ -169,8 +170,8 @@ module TicTacToe
       considered_hu = []
 
       # analyse each next possible move:
-      n = @game_board.board_dimention
-      n*n.times do |ind|
+      n = @game_board.board_dimention * @game_board.board_dimention
+      n.times do |ind|
         if board[ind] == " "
           board[ind] = current_player
           score = heuristc_val(board)
@@ -249,7 +250,7 @@ module TicTacToe
     end
 
     def continue_game?
-      @console.ask_if_continue_game == 'y' ? 1 : 0
+      @console.ask_if_continue_game == 'n' ? true : false
     end
   end
 end
