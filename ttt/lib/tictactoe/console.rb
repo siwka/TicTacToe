@@ -21,10 +21,12 @@ class Console
   end
 
   def get_char
-    system("stty raw -echo")
-    character = STDIN.getc
-    system("stty -raw echo")
-    return character
+    # commented is better way to play but it dissables Ctr+C
+    # system("stty raw -echo")
+    # character = STDIN.getc
+    # system("stty -raw echo")
+    # return character
+    gets.chomp.chr
   end
 
   def human_starts?
