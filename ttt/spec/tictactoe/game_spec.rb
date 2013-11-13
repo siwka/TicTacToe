@@ -44,7 +44,7 @@ module TicTacToe
 			end
 
 			it "prints information to use numeric pad pattern" do
-				output.should_receive(:puts).with("\nLet's set a game:\n")
+				output.should_receive(:puts).with("\nLet's start a game:\n")
 				game.start
 			end
 		end

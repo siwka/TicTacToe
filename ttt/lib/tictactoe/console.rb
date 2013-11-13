@@ -54,7 +54,7 @@ class Console
   end
 
   def chose_symbol?
-    puts 'Choose o or x:'
+    puts 'Choose your player symbol o or x:'
   end
 
   def human_symbol

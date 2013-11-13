@@ -12,14 +12,14 @@ module TicTacToe
 
     def start
       @output.puts "Welcome to tic tac toe!\n"
-      @output.puts "\nLet's set a game:\n"
+      @output.puts "\nLet's start a game:\n"
     end
 
     def set_game
       @console.chose_symbol?
       @game_board = Board.new(@console.human_symbol)
-      @output.puts "You use '#{@game_board.human_player_symbol}'"
-      @output.puts "Computer uses '" + @game_board.comp_player_symbol + "'"
+      @output.puts "You choose '#{@game_board.human_player_symbol}'"
+      @output.puts "Computer will use '" + @game_board.comp_player_symbol + "'"
       @output.puts "\nUse numeric pad that mimic a board to play\n"
       @console.draw_empty_board(@game_board.board_dimention)      
       @console.who_starts?
@@ -141,7 +141,6 @@ module TicTacToe
             max_moves.delete([max_moves[0][0], remove_mv(considered_hu, max_moves)])
             result = max_moves.sample
             mv = result[1]
-            puts "comp choose after deletion best human mv #{result[1]}"
           end
         end
       end
