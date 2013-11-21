@@ -115,40 +115,55 @@ module TicTacToe
 		end
 
 		describe "#switch_player" do
-			comp_player_symbol = 'o'
-			human_player_symbol = 'x'
+			# game_board = Board.new('x')
+
 			it "switches player to computer player if player was human player" do
-				pending "problem: generally avoid using instance variables in your tests, as they silently default to nil when referenced if uninitialized"
-				game.switch_player(human_player_symbol).should eql 'o'
+				pending "dependency injection works but program :-( for:"
+				game.switch_player(game_board.human_player_symbol, game_board).should eql 'o'
 			end
 
 			it "switches player to human_player if player was computer_player" do
-				pending "..continoue - it worked for global variables"
-				game.switch_player(comp_player_symbol).should eql 'x'
+				pending "switch_player(current_player, game_board), game_board = Board.new('x')"
+				game.switch_player(game_board.comp_player_symbol, game_board).should eql 'x'
 			end
-		end		
+		end
 
-		# describe "winning_move?" do
-		# 	#    def winning_move?(board)
-  #     #    n = @game_board.board_dimention - commented for test
 
-		# 	it "returns false if current move can't win" do
-		# 		game.winning_move?(@arr_01).should be_false
-		# 	end
+		describe "winning_move?" do
 
-		# 	it "returns first posible position to win in this move" do
-		# 		game.winning_move?(@arr_02).should eql 1
-		# 	end
+			#ks new aproach
+			# class Board
+			# attr_reader :board_dimention
+			 
+			# def board_dimention
+			# 	return 3
+			# end
+			# end
+			# @game_board = Board.new
+			# @game_board.board_dimention = 3
+ 			#    def winning_move?(board)
+      #    n = @game_board.board_dimention - commented for test
 
-		# 	it "returns first posible position to win in this move" do
-		# 		game.winning_move?(@arr_03).should eql 3
-		# 	end		
+      				# pending "problem: generally avoid using instance variables in your tests, as they silently default to nil when referenced if uninitialized"
 
-		# 	it "returns first posible position to win in this move" do
-		# 		game.winning_move?(@arr_04).should eql 3
-		# 	end
 
-		# end
+			xit "returns false if current move can't win" do
+				game.winning_move?(@arr_01).should be_false
+			end
+
+			xit "returns first posible position to win in this move" do
+				game.winning_move?(@arr_02).should eql 1
+			end
+
+			xit "returns first posible position to win in this move" do
+				game.winning_move?(@arr_03).should eql 3
+			end		
+
+			xit "returns first posible position to win in this move" do
+				game.winning_move?(@arr_04).should eql 3
+			end
+
+		end
 
 
 		# describe "computer_move" do

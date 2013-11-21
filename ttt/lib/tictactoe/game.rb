@@ -21,7 +21,7 @@ module TicTacToe
       @output.puts "You choose '#{@game_board.human_player_symbol}'"
       @output.puts "Computer will use '" + @game_board.comp_player_symbol + "'"
       @output.puts "\nUse numeric pad that mimic a board to play\n"
-      @console.draw_empty_board(@game_board.board_dimention)      
+      @console.draw_empty_board(@game_board.board_dimention)
       @console.who_starts?
       @current_player = @console.human_starts? ? @game_board.human_player_symbol : @game_board.comp_player_symbol
     end
@@ -92,7 +92,6 @@ module TicTacToe
       else
         current_player = @game_board.human_player_symbol
       end
-      return current_player
     end
 
     def move(board, current_player)

@@ -10,5 +10,4 @@ class Board
   def board_dimention
     3
   end
-
 end

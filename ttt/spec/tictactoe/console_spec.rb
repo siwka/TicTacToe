@@ -3,7 +3,7 @@ require 'spec_helper'
 module TicTacToe
   describe Console do
     let(:console) { console = Console.new }
-    #let(:board)   { board = Board.new('x')}
+
 
     describe "setting new game" do
 
