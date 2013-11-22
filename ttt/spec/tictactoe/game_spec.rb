@@ -115,16 +115,18 @@ module TicTacToe
 		end
 
 		describe "#switch_player" do
-			# game_board = Board.new('x')
+			game_board = Board.new('x')
 
 			it "switches player to computer player if player was human player" do
-				pending "dependency injection works but program :-( for:"
-				game.switch_player(game_board.human_player_symbol, game_board).should eql 'o'
+				#pending "dependency injection works but program :-( for:"
+				game.game_board = game_board
+				game.switch_player(game_board.human_player_symbol).should eql 'o'
 			end
 
 			it "switches player to human_player if player was computer_player" do
-				pending "switch_player(current_player, game_board), game_board = Board.new('x')"
-				game.switch_player(game_board.comp_player_symbol, game_board).should eql 'x'
+				#pending "switch_player(current_player, game_board), game_board = Board.new('x')"
+				game.game_board = game_board
+				game.switch_player(game_board.comp_player_symbol).should eql 'x'
 			end
 		end
 
