@@ -2,12 +2,12 @@ require_relative 'IntConst'
 
 module TicTacToe
   class Game
-    attr_accessor :current_player, :game_board #dr, :console
+    attr_accessor :current_player, :game_board, :console
+                                   # :game_board, :console added only bc of testing
 
     def initialize(output)
       @output = output
       @console = Console.new
-      #dr self.console = Console.new
       @current_player = 'x'
     end
 

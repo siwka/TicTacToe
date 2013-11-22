@@ -132,36 +132,30 @@ module TicTacToe
 
 
 		describe "winning_move?" do
+			game_board = Board.new('x')
+			console = Console.new
 
-			#ks new aproach
-			# class Board
-			# attr_reader :board_dimention
-			 
-			# def board_dimention
-			# 	return 3
-			# end
-			# end
-			# @game_board = Board.new
-			# @game_board.board_dimention = 3
- 			#    def winning_move?(board)
-      #    n = @game_board.board_dimention - commented for test
-
-      				# pending "problem: generally avoid using instance variables in your tests, as they silently default to nil when referenced if uninitialized"
-
-
-			xit "returns false if current move can't win" do
+			it "returns false if current move can't win" do
+				game.console = console
+				game.game_board = game_board
 				game.winning_move?(@arr_01).should be_false
 			end
 
-			xit "returns first posible position to win in this move" do
+			it "returns first posible position to win in this move" do
+				game.console = console
+				game.game_board = game_board
 				game.winning_move?(@arr_02).should eql 1
 			end
 
-			xit "returns first posible position to win in this move" do
+			it "returns first posible position to win in this move" do
+				game.console = console
+				game.game_board = game_board
 				game.winning_move?(@arr_03).should eql 3
 			end		
 
 			xit "returns first posible position to win in this move" do
+				game.console = console
+				game.game_board = game_board
 				game.winning_move?(@arr_04).should eql 3
 			end
 
