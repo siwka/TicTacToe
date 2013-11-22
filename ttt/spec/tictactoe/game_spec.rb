@@ -153,36 +153,42 @@ module TicTacToe
 				game.winning_move?(@arr_03).should eql 3
 			end		
 
-			xit "returns first posible position to win in this move" do
+			it "returns first posible position to win in this move" do
 				game.console = console
 				game.game_board = game_board
-				game.winning_move?(@arr_04).should eql 3
+				game.winning_move?(@arr_04).should eql 8
 			end
 
 		end
 
 
-		# describe "computer_move" do
+		describe "computer_move" do
+			game_board = Board.new('x')
 
-		# 	it "returns random nr from [0..8]" do
-		# 		expect([0,1,2,3,4,5,6,7,8]).to include(game.computer_move(@arr_01))
-		# 	end
+			it "returns random nr from [0..8]" do
+				game.game_board = game_board
+				expect([0,1,2,3,4,5,6,7,8]).to include(game.computer_move(@arr_01))
+			end
 
-		# 	it "returns winning move" do
-		# 		game.computer_move(@arr_03).should eql 3
-		# 	end
+			it "returns winning move" do
+				game.game_board = game_board
+				game.computer_move(@arr_03).should eql 3
+			end
 
-		# 	it "returns random nr of [1,3,5,7]" do
-		# 		expect([1,3,5,7]).to include(game.computer_move(@arr_05))
-		# 	end
+			xit "returns random nr of [1,3,5,7]" do
+				game.game_board = game_board
+				expect([1,3,5,7]).to include(game.computer_move(@arr_05))
+			end
 
-		# 	it "returns the best move" do
-		# 		game.computer_move(@arr_06).should eql 4
-		# 	end
+			xit "returns the best move" do
+				game.game_board = game_board
+				game.computer_move(@arr_06).should eql 4
+			end
 
-		# 	it "returns safe, not the best to win move" do
-		# 		game.computer_move(@arr_07).should eql 8
-		# 	end
-		# end
+			xit "returns safe, not the best to win move" do
+				game.game_board = game_board
+				game.computer_move(@arr_07).should eql 8
+			end
+		end
 	end
 end
