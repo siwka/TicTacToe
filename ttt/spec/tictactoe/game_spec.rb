@@ -23,7 +23,7 @@ module TicTacToe
 					  		 "o", "o", " "]
 
 			@arr_05 = ["o", " ", " ",
-					  		 " ", "x", " ",
+					  		 " ", "x", " ",		#ks special case? check it
 					  		 " ", " ", "o"]
 
 			@arr_06 = [" ", "o", " ",   # one best move
