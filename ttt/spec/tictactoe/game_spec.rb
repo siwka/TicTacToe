@@ -50,7 +50,8 @@ module TicTacToe
 		end
 
 		describe "#play" do
-			
+			game_board = Board.new('x')
+
 			before do
 				@arr_08 = ["x", " ", " ",
 					  	     " ", "x", " ",
@@ -79,28 +80,36 @@ module TicTacToe
 		 	end
 
 		 	it "returns false if no horizontal win" do
+		 		game.game_board = game_board
 		 		game.won_horizontal?(@arr_08).should be_false
 		  end
 		 	it "returns x upon x-player win" do
-		 		game.won_horizontal?(@arr_09).should eql 1
+		 		game.game_board = game_board
+		 		game.won_horizontal?(@arr_09).should eql 'x'
 		  end
 		 	it "returns x if x-player won" do
-		 		game.won?(@arr_10).should eql 1
+		 		game.game_board = game_board
+		 		game.won?(@arr_10).should eql 'x'
 		  end
 		 	it "returns o if o-player won" do
-		 		game.won?(@arr_11).should eql 2
+		 		game.game_board = game_board
+		 		game.won?(@arr_11).should eql 'o'
 		  end	
 		 	it "returns o if o-player won" do
-		 		game.won?(@arr_12).should eql 2
+		 		game.game_board = game_board
+		 		game.won?(@arr_12).should eql 'o'
 		  end	
 		 	it "returns o if o-player won" do
+		 		game.game_board = game_board
 		 		game.won?(@arr_13).should be_false
 		  end	
 		 	it "returns false when no win" do
+		 		game.game_board = game_board
 		 		game.won?(@arr_14).should be_false
 		  end	
 		 	it "returns o if o-player won" do
-		 		game.won_horizontal?(@arr_15).should eql(2)
+		 		game.game_board = game_board
+		 		game.won_horizontal?(@arr_15).should eql('o')
 		  end
 		end
 
@@ -118,13 +127,11 @@ module TicTacToe
 			game_board = Board.new('x')
 
 			it "switches player to computer player if player was human player" do
-				#pending "dependency injection works but program :-( for:"
 				game.game_board = game_board
 				game.switch_player(game_board.human_player_symbol).should eql 'o'
 			end
 
 			it "switches player to human_player if player was computer_player" do
-				#pending "switch_player(current_player, game_board), game_board = Board.new('x')"
 				game.game_board = game_board
 				game.switch_player(game_board.comp_player_symbol).should eql 'x'
 			end
