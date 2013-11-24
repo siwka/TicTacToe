@@ -142,6 +142,7 @@ class Console
     puts "Play again? (y/n):" 
     response = get_char
     until response == 'y' || response == 'n'
+      puts "this is wrong key, try again!"
       response = get_char
     end
     return response
