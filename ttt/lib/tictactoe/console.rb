@@ -110,9 +110,9 @@ class Console
   end
 
   def game_result(winner)
-      if winner == 1
+      if winner == 'x'
         puts "player x won!"
-      elsif winner == 2
+      elsif winner == 'o'
         puts "player o won!"
       else
         puts "Game is over - draw!"

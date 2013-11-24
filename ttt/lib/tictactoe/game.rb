@@ -48,36 +48,39 @@ module TicTacToe
       return false      
     end
 
-    def won_horizontal?(board)
-      b = board
-      if [b[0..2].join, b[3..5].join, b[6..8].join].include?("xxx")
-        return 1
+    def won_horizontal?(b)
+      win_line = Array.new(game_board.board_dimention, game_board.comp_player_symbol).join
+      if [b[0..2].join, b[3..5].join, b[6..8].join].include?(win_line)
+        return game_board.comp_player_symbol
       end
-      if [b[0..2].join, b[3..5].join, b[6..8].join].include?("ooo")
-        return 2
+      win_line = Array.new(game_board.board_dimention, game_board.human_player_symbol).join      
+      if [b[0..2].join, b[3..5].join, b[6..8].join].include?(win_line)
+        return game_board.human_player_symbol
       end
       return false
     end
 
-    def won_vertical?(board)
-      b = board
-      if [b[0]+b[3]+b[6], b[1]+b[4]+b[7], b[2]+b[5]+b[8]].include?("xxx")
-        return 1
+    def won_vertical?(b)
+      win_line = Array.new(game_board.board_dimention, game_board.comp_player_symbol).join
+      if [b[0]+b[3]+b[6], b[1]+b[4]+b[7], b[2]+b[5]+b[8]].include?(win_line)
+        return game_board.comp_player_symbol
       end
-      if [b[0]+b[3]+b[6], b[1]+b[4]+b[7], b[2]+b[5]+b[8]].include?("ooo")
-        return 2
-      end 
+      win_line = Array.new(game_board.board_dimention, game_board.human_player_symbol).join  
+      if [b[0]+b[3]+b[6], b[1]+b[4]+b[7], b[2]+b[5]+b[8]].include?(win_line)
+        return game_board.human_player_symbol
+      end
       return false
     end
 
-    def won_diagonal?(board)
-      b = board
-      if [b[0]+b[4]+b[8], b[2]+b[4]+b[6]].include?("xxx")
-        return 1
+    def won_diagonal?(b)
+      win_line = Array.new(game_board.board_dimention, game_board.comp_player_symbol).join  
+      if [b[0]+b[4]+b[8], b[2]+b[4]+b[6]].include?(win_line)
+        return game_board.comp_player_symbol
       end 
-      if [b[0]+b[4]+b[8], b[2]+b[4]+b[6]].include?("ooo")
-        return 2
-      end
+      win_line = Array.new(game_board.board_dimention, game_board.human_player_symbol).join  
+      if [b[0]+b[4]+b[8], b[2]+b[4]+b[6]].include?(win_line)
+        return game_board.human_player_symbol
+      end 
       return false  
     end
 
