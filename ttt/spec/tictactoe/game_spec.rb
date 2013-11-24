@@ -22,18 +22,18 @@ module TicTacToe
 					  		 " ", "x", "x",
 					  		 "o", "o", " "]
 
-			@arr_05 = ["o", " ", " ",
-					  		 " ", "x", " ",		#ks special case? check it
-					  		 " ", " ", "o"]
+			@arr_05 = ["x", " ", " ",
+					  		 " ", "o", " ",		# special case
+					  		 " ", " ", "x"]
 
-			@arr_06 = [" ", "o", " ",   # one best move
-					  		 " ", " ", "x",
-					  		 " ", "x", "o"]
+			@arr_06 = [" ", "x", " ",   # one best move
+					  		 " ", " ", "o",
+					  		 " ", "o", "x"]
 
 
-			@arr_07 = [" ", "o", " ",   # best move 6 lead to lose -> remove human best
-					  		 " ", "x", "o",
-					  		 " ", "x", " "]	
+			@arr_07 = [" ", "x", " ",   # best move 6 lead to lose -> remove human best
+					  		 " ", "o", "x",
+					  		 " ", "o", " "]	
 		end		
 
 		describe "#start" do
@@ -175,17 +175,17 @@ module TicTacToe
 				game.computer_move(@arr_03).should eql 3
 			end
 
-			xit "returns random nr of [1,3,5,7]" do
+			it "returns random nr of [1,3,5,7]" do
 				game.game_board = game_board
 				expect([1,3,5,7]).to include(game.computer_move(@arr_05))
 			end
 
-			xit "returns the best move" do
+			it "returns the best move" do
 				game.game_board = game_board
 				game.computer_move(@arr_06).should eql 4
 			end
 
-			xit "returns safe, not the best to win move" do
+			it "returns safe, not the best to win move" do
 				game.game_board = game_board
 				game.computer_move(@arr_07).should eql 8
 			end
