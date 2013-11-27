@@ -66,13 +66,23 @@ class Console
     human_player
   end
 
-  def draw_empty_board(board_dimention)
+  def backward_array(board_dimention)
+    array = Array.new(board_dimention){ |i| i }
+    array.sort! { |x,y| y <=> x }
+  end
+
+  def reorganize_board_to_numeric_pad(board_dimention)
     ind_board = []
-    [2,1,0].each do |indx|
+    backward_array(board_dimention).each do |indx|
       board_dimention.times do |column|
         ind_board << column+board_dimention*indx+1
       end
     end
+    ind_board
+  end
+
+  def draw_empty_board(board_dimention)
+    ind_board = reorganize_board_to_numeric_pad(board_dimention)
 
     puts "\n"
     ind_board.each do |cell|
