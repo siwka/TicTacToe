@@ -72,20 +72,18 @@ class Console
   end
 
   def reorganize_board_to_numeric_pad(board_dimention)
-    ind_board = []
+    numeric_pad = []
     backward_array(board_dimention).each do |indx|
       board_dimention.times do |column|
-        ind_board << column+board_dimention*indx+1
+        numeric_pad << column+board_dimention*indx+1
       end
     end
-    ind_board
+    numeric_pad
   end
 
-  def draw_empty_board(board_dimention)
-    ind_board = reorganize_board_to_numeric_pad(board_dimention)
-
+  def print_demo_board(board_dimention, numeric_pad)
     puts "\n"
-    ind_board.each do |cell|
+    numeric_pad.each do |cell|
       print " "+ (cell).to_s + " "
       if ((cell) % board_dimention != 0)
         print "|"
@@ -96,6 +94,11 @@ class Console
       end 
     end
     puts "\n"
+  end
+
+  def draw_empty_board(board_dimention)
+    print_demo_board(board_dimention, reorganize_board_to_numeric_pad(board_dimention))
+    # print_demo_board(board_dimention, numeric_pad)
   end
 
   def draw_board(board_dimention, board)
