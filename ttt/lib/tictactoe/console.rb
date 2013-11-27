@@ -98,6 +98,7 @@ class Console
 
   def draw_empty_board(board_dimention)
     print_demo_board(board_dimention, reorganize_board_to_numeric_pad(board_dimention))
+    # numeric_pad = reorganize_board_to_numeric_pad(board_dimention)
     # print_demo_board(board_dimention, numeric_pad)
   end
 
@@ -106,7 +107,7 @@ class Console
     (board_dimention*board_dimention).times do |ind|
       if (ind < board_dimention)
         print " " + board[ind+2*board_dimention].to_s + " "     
-      elsif (2*board_dimention-1<ind)
+      elsif (2*board_dimention-1 < ind)
         print " " + board[ind-2*board_dimention].to_s + " "
       else
         print " " + board[ind].to_s + " "
