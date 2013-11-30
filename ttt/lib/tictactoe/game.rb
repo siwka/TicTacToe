@@ -112,13 +112,21 @@ module TicTacToe
       mv = @console.read_human_move(board)
     end
 
+    def board_empty?
+      game_board.board.count(" ") == 9
+    end
+
+    def random_first_move
+      mv = [0,1,2,3,4,5,6,7,8].sample
+    end
+
     def computer_move(board)    
       if mv = winning_move?(board)
         return mv
       end
 
-      if board.count(" ") == 9
-        mv = [0,1,2,3,4,5,6,7,8].sample
+      if board_empty?
+        mv = random_first_move
       else
         # start with a special case to avoid human moves in 3 corners in 2 empty lines
         if board.count(" ") == 6 && board[4] == @game_board.comp_player_symbol &&

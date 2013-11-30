@@ -9,8 +9,9 @@ module TicTacToe
 
       it 'prompts for who starts a game' do
         pending "puts removes str, decide Console or output to pass test"
-        console.who_starts?.should == 'Who is going to make first move: 1-you, 2-computer?:'
+        # console.who_starts?.should == 'Who is going to make first move: 1-you, 2-computer?:'
         #console.should_receive(:puts).with('Who is going to make first move: 1-you, 2-computer?')
+        console.who_starts?.should eq( "Do you want to make a first move (y/n)?")
       end
 
       it 'prompts for human player symbol' do
