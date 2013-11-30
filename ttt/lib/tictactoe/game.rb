@@ -120,6 +120,12 @@ module TicTacToe
       board.count(" ") == 9
     end
 
+    def special_case?(board)
+      board.count(" ") == 6 && board[4] == @game_board.comp_player_symbol &&
+          ((board[0] == @game_board.human_player_symbol && board[8] == @game_board.human_player_symbol) ||
+          (board[2] == @game_board.human_player_symbol && board[6] == @game_board.human_player_symbol))
+    end
+
     def computer_move(board)    
       if mv = winning_move?(board)
         return mv
@@ -129,11 +135,8 @@ module TicTacToe
         mv = random_first_move
       else
         # start with a special case to avoid human moves in 3 corners in 2 empty lines
-        if board.count(" ") == 6 && board[4] == @game_board.comp_player_symbol &&
-          ((board[0] == @game_board.human_player_symbol && board[8] == @game_board.human_player_symbol) ||
-          (board[2] == @game_board.human_player_symbol && board[6] == @game_board.human_player_symbol))
-          arr_mv = [1,3,5,7]
-          mv = arr_mv.sample
+        if special_case?(board)
+          mv = [1,3,5,7].sample
         else
           considered_temp = estimate_moves(board, @game_board.comp_player_symbol)
           considered_mv = considered_temp[0]
