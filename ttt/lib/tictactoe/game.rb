@@ -112,12 +112,12 @@ module TicTacToe
       mv = @console.read_human_move(board)
     end
 
-    def board_empty?
-      game_board.board.count(" ") == 9
+    def random_first_move
+      [0,1,2,3,4,5,6,7,8].sample
     end
 
-    def random_first_move
-      mv = [0,1,2,3,4,5,6,7,8].sample
+    def board_empty?(board)
+      board.count(" ") == 9
     end
 
     def computer_move(board)    
@@ -125,7 +125,7 @@ module TicTacToe
         return mv
       end
 
-      if board_empty?
+      if board_empty?(board)
         mv = random_first_move
       else
         # start with a special case to avoid human moves in 3 corners in 2 empty lines
