@@ -126,6 +126,14 @@ module TicTacToe
           (board[2] == @game_board.human_player_symbol && board[6] == @game_board.human_player_symbol))
     end
 
+    def one_best_computer_move?(max_moves)
+      max_moves.length == 1
+    end
+
+    def extract_best_move(max_moves)
+      mv = max_moves[0][1]
+    end
+
     def computer_move(board)    
       if mv = winning_move?(board)
         return mv
@@ -148,8 +156,8 @@ module TicTacToe
           # as 1st, 2nd, and 3rd best choice respectevely
           
           # one only the best move for computer
-          if max_moves.length == 1
-            mv = max_moves[0][1]
+          if one_best_computer_move?(max_moves)
+            mv = extract_best_move(max_moves)
           else
             # remove the best chance for human
             max_moves.delete([max_moves[0][0], remove_mv(considered_hu, max_moves)])
