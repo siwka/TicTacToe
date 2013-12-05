@@ -152,8 +152,7 @@ module TicTacToe
           mv = [1,3,5,7].sample
         else
           considered_temp = estimate_moves(board, @game_board.comp_player_symbol)
-          considered_mv = considered_temp[0]
-          considered_hu = considered_temp[1]
+          considered_mv, considered_hu = considered_temp
           max_moves = selected_from_best_comp_mv(considered_mv)
 
           # mirror and turned board are the same game cases
