@@ -161,8 +161,7 @@ module TicTacToe
           else
             # remove the best chance for human
             max_moves.delete([max_moves[0][0], remove_mv(considered_hu, max_moves)])
-            result = max_moves.sample
-            mv = result[1]
+            mv = max_moves.sample[1]
           end
         end
       end
