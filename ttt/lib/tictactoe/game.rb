@@ -134,6 +134,11 @@ module TicTacToe
       mv = max_moves[0][1]
     end
 
+    def remove_the_best_chance_for_human(considered_hu, max_moves)
+      max_moves.delete([max_moves[0][0], remove_mv(considered_hu, max_moves)])
+      mv = max_moves.sample[1]      
+    end
+
     def computer_move(board)    
       if mv = winning_move?(board)
         return mv
@@ -159,9 +164,7 @@ module TicTacToe
           if one_best_computer_move?(max_moves)
             mv = extract_best_move(max_moves)
           else
-            # remove the best chance for human
-            max_moves.delete([max_moves[0][0], remove_mv(considered_hu, max_moves)])
-            mv = max_moves.sample[1]
+            mv = remove_the_best_chance_for_human(considered_hu, max_moves)
           end
         end
       end
