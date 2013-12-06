@@ -187,7 +187,7 @@ module TicTacToe
     end
 
     def estimate_moves(board, current_player)
-      # collect eva;uated results for each move
+      # collect evaluated results for each move
       considered_mv = []
       considered_hu = []
 
