@@ -30,6 +30,7 @@ module TicTacToe
     def play
       while (!(winner = won?(@game_board.board)) && (!tie?(@game_board.board)))
         move(@game_board.board, @current_player)
+        @console.draw_board(@game_board.board_dimention, @game_board.board)
         @current_player = switch_player(@current_player)
       end
       @console.game_result(winner)
@@ -105,7 +106,6 @@ module TicTacToe
         mv = computer_move(board)
       end
       @game_board.board[mv] = current_player
-      @console.draw_board(@game_board.board_dimention, @game_board.board)
     end
 
     def human_move(board)
