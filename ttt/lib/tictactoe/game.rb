@@ -37,16 +37,11 @@ module TicTacToe
     end
 
     def won?(board)
-      if player = won_horizontal?(board)
+      if player = (won_horizontal?(board) || won_vertical?(board) || won_diagonal?(board))
         return player
-      end
-      if player = won_vertical?(board)
-        return player
-      end
-      if player = won_diagonal?(board)
-        return player
-      end 
-      return false      
+      else
+        return false
+      end  
     end
 
     def won_horizontal?(b)
