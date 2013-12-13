@@ -1,34 +1,39 @@
-require_relative 'IntConst'
+require_relative 'IntConst'  # => true, false
 
 module TicTacToe
   class Game
-    attr_accessor :current_player, :game_board, :console
+    attr_accessor :current_player, :game_board, :console  # => nil, nil
                                    # :game_board, :console added only bc of testing
 
     def initialize(output)
-      @output = output
-      @console = Console.new
-      @current_player = 'x'
+      @output = output        # => #<StringIO:0x898f4d8>, #<StringIO:0x898f4d8>
+      @console = Console.new  # ~> NameError: uninitialized constant TicTacToe::Game::Console
+      @current_player = 'x'   # => "x"
     end
 
     def start
-      @output.puts "Welcome to tic tac toe!\n"
-      @output.puts "\nLet's start a game:\n"
+      @output.puts "Welcome to tic tac toe!\n"  # => nil
+      @output.puts "\nLet's start a game:\n"    # => nil
     end
 
     def set_game
-      @console.chose_symbol?
-      @game_board = Board.new(@console.human_symbol)
-      @output.puts "You choose '#{@game_board.human_player_symbol}'"
-      @output.puts "Computer will use '" + @game_board.comp_player_symbol + "'"
-      @output.puts "\nUse numeric pad that mimic a board to play\n"
-      @console.draw_empty_board(@game_board.board_dimention)
-      @console.who_starts?
-      @current_player = @console.human_starts? ? @game_board.human_player_symbol : @game_board.comp_player_symbol
+      @console.chose_symbol?                                                                                       # => nil
+      @game_board = Board.new(@console.human_symbol)                                                               # => #<Board:0x87d8db0 @board=[" ", " ", " ", " ", " ", " ", " ", " ", " "], @human_player_symbol="x", @comp_player_symbol="o">
+      @output.puts "You choose '#{@game_board.human_player_symbol}'"                                               # => nil
+      @output.puts "Computer will use '" + @game_board.comp_player_symbol + "'"                                    # => nil
+      @output.puts "\nUse numeric pad that mimic a board to play\n"                                                # => nil
+      @console.draw_empty_board(@game_board.board_dimention)                                                       # => nil
+      @console.who_starts?                                                                                         # => nil
+      @current_player = @console.human_starts? ? @game_board.human_player_symbol : @game_board.comp_player_symbol  # ~> NoMethodError: undefined method `chomp' for nil:NilClass
+    end
+
+    def game_not_over?
+      #(!(winner = won?(@game_board.board)) && (!tie?(@game_board.board)))
+      won?(@game_board.board) || tie?(@game_board.board)
     end
 
     def play
-      while (!(winner = won?(@game_board.board)) && (!tie?(@game_board.board)))
+      while !(winner = game_not_over?)
         move(@game_board.board, @current_player)
         @console.draw_board(@game_board.board_dimention, @game_board.board)
         @current_player = switch_player(@current_player)
@@ -271,3 +276,43 @@ module TicTacToe
     end
   end
 end
+
+
+# require 'stringio'  # => false, false
+
+# $stdin = StringIO.new("x\n")  # => #<StringIO:0x8904950>, #<StringIO:0x88b9590>
+
+# # begin
+#   $LOAD_PATH.unshift "/home/siwka/_dev/ttt/ttt/lib"  # => ["/home/siwka/_dev/ttt/ttt/lib", "/home/siwka/.rvm/gems/ruby-2.0.0-p247/gems/seeing_is_believing-2.0.3/lib", "/home/siwka/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/site_ruby/2.0.0", "/home/siwka/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/site_ruby/2.0.0/i686-linux", "/home/siwka/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/site_ruby", "/home/siwka/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/vendor_ruby/2.0.0", "/home/siwka/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/vendor_ruby/2.0.0/i686-linux", "/home/siwka/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/vendor_ruby", "/home/siwka/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0", "/home/siwka/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/i686-linux"], ["/home/siwka/_dev/ttt/ttt/lib", "/home/siwka/_dev/ttt/ttt/lib", "/home/siwka/.rvm/gems/ruby-2.0.0-p247/gems/seeing_is_believing-2.0.3/lib", "/home/siwka/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/site_ruby/2.0.0", "/home/siwka/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/site_ruby/2.0.0/i68...
+#   require 'tictactoe'                                # => false, true
+#   game = TicTacToe::Game.new(STDOUT)                 # => #<TicTacToe::Game:0x87d94e0 @output=#<StringIO:0x898f4d8>, @console=#<Console:0x87d9454>, @current_player="x">
+#   game.start                                         # => nil
+#   game.set_game
+#   game.play
+# # end until game.continue_game?
+
+# # >> [H[2J
+# # >> Welcome to tic tac toe!
+# # >> 
+# # >> Let's start a game:
+# # >> Choose your player symbol o or x:
+# # >> You choose 'x'
+# # >> Computer will use 'o'
+# # >> 
+# # >> Use numeric pad that mimic a board to play
+# # >> 
+# # >>  7 | 8 | 9 
+# # >> ---+---+---
+# # >>  4 | 5 | 6 
+# # >> ---+---+---
+# # >>  1 | 2 | 3 
+# # >> 
+# # >> Do you want to make a first move (y/n)?
+
+# # ~> NoMethodError
+# # ~> undefined method `chomp' for nil:NilClass
+# # ~>
+# # ~> /home/siwka/_dev/ttt/ttt/lib/tictactoe/console.rb:29:in `get_char'
+# # ~> /home/siwka/_dev/ttt/ttt/lib/tictactoe/console.rb:33:in `human_starts?'
+# # ~> /home/siwka/_dev/ttt/ttt/lib/tictactoe/game.rb:27:in `set_game'
+# # ~> /home/siwka/_dev/ttt/ttt/lib/tictactoe/game.rb:285:in `<main>'
